@@ -35,6 +35,14 @@
       margin-bottom: 20px;
     }
 
+    .field {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      color: #000000;
+    }
+
     input[type="number"],
     select,
     button {
@@ -49,7 +57,7 @@
     }
 
     input[type="number"] {
-      width: 110px;
+      width: 96px;
     }
 
     input[type="number"]::placeholder {
@@ -90,23 +98,29 @@
 <body>
   <!-- 바둑판 크기(px), AI 난이도, 돌 선택, 시작/재시작 버튼 -->
   <div class="controls">
-    <input
-      type="number"
-      id="boardSizeInput"
-      step="any"
-      value="540"
-      placeholder="px"
-      aria-label="Board Size (px)"
-    />
-    <input
-      type="number"
-      id="aiSkillInput"
-      step="any"
-      value="4"
-      placeholder="AI"
-      aria-label="AI Skill"
-    />
-    <select id="stoneColorSelect" aria-label="Stone Color">
+    <label class="field" for="boardSizeInput">
+      <span>크기(px)</span>
+      <input
+        type="number"
+        id="boardSizeInput"
+        step="any"
+        value="500"
+        placeholder="크기(px)"
+        aria-label="크기(px)"
+      />
+    </label>
+    <label class="field" for="aiSkillInput">
+      <span>난이도</span>
+      <input
+        type="number"
+        id="aiSkillInput"
+        step="any"
+        value="3.0"
+        placeholder="난이도"
+        aria-label="난이도"
+      />
+    </label>
+    <select id="stoneColorSelect" aria-label="돌 선택">
       <option value="1">● 흑</option>
       <option value="2">○ 백</option>
     </select>
@@ -131,7 +145,7 @@
       const startBtn = document.getElementById("startBtn");
 
       let board = Array.from({ length: GRID_COUNT }, () => Array(GRID_COUNT).fill(EMPTY));
-      let boardPixelSize = 540;
+      let boardPixelSize = 500;
       let playerColor = BLACK;
       let aiColor = WHITE;
       let currentTurn = BLACK;
